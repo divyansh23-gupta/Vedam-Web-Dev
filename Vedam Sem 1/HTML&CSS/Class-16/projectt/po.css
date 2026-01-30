@@ -1,0 +1,100 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f9f9fb;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 80px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.navbar nav a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Hero */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 80px;
+}
+
+/* Left */
+.hero-left {
+    width: 50%;
+}
+
+.hero-left h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-left h1 span {
+    color: #ff7a3d;
+}
+
+.hero-left p {
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 450px;
+}
+
+.hero-left button {
+    padding: 12px 22px;
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+/* Socials */
+.socials span {
+    margin-right: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Right */
+.hero-right {
+    position: relative;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-right img {
+    width: 320px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Orange Blob */
+.blob {
+    position: absolute;
+    width: 350px;
+    height: 400px;
+    background: #ff7a3d;
+    border-radius: 45% 55% 60% 40%;
+    z-index: 1;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction:initial;
+            border: 5px solid red;
+            justify-content: space-between;
+            align-items: flex-wrap;
+             height: 50px;  
+            padding: 20px;
+            flex-wrap: wrap;
+
+        
+        }
+        .flex-item {
+            padding: 20px;
+            border:0cap solid black;
+            width:200px; 
+        }
+        .item4 {
+            align-self: center;
+            order:1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flex playground</h1>
+    <!-- main flex parent -->
+     <div class="flex-container">
+
+        <!-- child items -->
+         <div class="flex-item item1" style="background-color: lightcoral">
+            I am div block
+            </div>
+         <div class="flex-item item2" style="background-color: lightblue">
+            I am another div block
+         </div>
+            <div class="flex-item item3" style="background-color: lightgreen">
+                I am div block
+            </div>
+            <div class="flex-item item4" style="background-color: lightpink">
+                I am another div block
+            </div>
+    </div>
+
+</body>
+</html>
