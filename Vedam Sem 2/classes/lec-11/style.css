@@ -1,0 +1,221 @@
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* PAGE BACKGROUND */
+body{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+
+    background: radial-gradient(circle at center, #1b2a33, #0b1419 70%);
+    position:relative;
+}
+
+/* TITLE */
+.title{
+    font-size:42px;
+    font-weight:700;
+    letter-spacing:2px;
+    margin-bottom:25px;
+    text-shadow:0 4px 15px rgba(0,0,0,0.6);
+   
+
+}
+
+/* GAME BOX */
+.box{
+    width:320px;
+    height:420px;
+    position:relative;
+
+    background:rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.2);
+
+    box-shadow:0 25px 60px rgba(0,0,0,0.6);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+/* SCORE BADGE */
+.score{
+    position:absolute;
+    top:15px;
+    left:15px;
+    padding:8px 14px;
+    background:rgba(0,0,0,0.4);
+    border-radius:12px;
+    font-size:18px;
+    font-weight:600;
+    backdrop-filter: blur(6px);
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+/* TARGET SQUARE */
+.box2{
+    height:55px;
+    width:55px;
+    position:absolute;
+
+    background:linear-gradient(145deg,#ff0844,#ff2e63);
+    border-radius:12px;
+
+    box-shadow:
+        0 0 20px rgba(255,0,90,0.7),
+        0 0 40px rgba(255,0,90,0.4),
+        inset 0 0 10px rgba(255,255,255,0.4);
+
+    transition:transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+/* CLICK EFFECT */
+.box2:active{
+    transform:scale(0.85);
+    box-shadow:
+        0 0 10px rgba(255,0,90,0.8),
+        inset 0 0 15px rgba(255,255,255,0.6);
+}
+
+/* INVISIBLE BUTTON */
+.btn{
+    width:100%;
+    height:100%;
+    opacity:0;
+    cursor:pointer;
+    border:none;
+    background:transparent;
+}
+/* TARGET HOVER EFFECT */
+.box2:hover{
+    transform: scale(1.08);
+    box-shadow:
+        0 0 25px rgba(255,0,90,0.9),
+        0 0 60px rgba(255,0,90,0.5),
+        inset 0 0 12px rgba(255,255,255,0.7);
+}
+
+/* SMOOTH TELEPORT ANIMATION */
+.box2{
+    transition:
+        left 0.25s cubic-bezier(.2,.8,.2,1),
+        top 0.25s cubic-bezier(.2,.8,.2,1),
+        transform 0.12s;
+}
+
+/* SCORE UPDATE ANIMATION */
+.score{
+    transition: transform 0.15s ease, background 0.2s;
+}
+
+.score.bump{
+    transform: scale(1.2);
+    background: rgba(255,255,255,0.25);
+}
+
+/* TITLE FLOAT ANIMATION */
+.title{
+    animation: floatTitle 3s ease-in-out infinite alternate;
+        transform: rotate(180deg);
+
+}
+
+@keyframes floatTitle{
+    from{ transform: translateY(0px); }
+    to{ transform: translateY(8px); }
+}
+
+/* SOFT SCREEN GLOW */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background: radial-gradient(circle at center,
+        rgba(255,255,255,0.05),
+        transparent 60%);
+}
+/* GAME OVER SCREEN */
+.gameover{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.65);
+    backdrop-filter: blur(6px);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    color:white;
+    font-size:24px;
+}
+
+.hidden{
+    display:none;
+}
+
+#restart{
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    background:#ff2e63;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+#restart:hover{
+    transform:scale(1.1);
+    background:#ff0844;
+}
+/* MOVING COLOR LAYER */
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    top:-50%;
+    left:-50%;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(0,255,255,0.15), transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(255,0,120,0.18), transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(0,120,255,0.12), transparent 50%);
+    animation: bgMove 18s linear infinite;
+    z-index:-2;
+}
+
+@keyframes bgMove{
+    0%{ transform: rotate(0deg) translate(0,0); }
+    50%{ transform: rotate(180deg) translate(5%,5%); }
+    100%{ transform: rotate(360deg) translate(0,0); }
+}
+body::after{
+    content:"";
+    position:fixed;
+    width:450px;
+    height:450px;
+    left:var(--mouse-x);
+    top:var(--mouse-y);
+    border-radius:50%;
+    pointer-events:none;
+    background: radial-gradient(circle, rgba(255,255,255,0.14), transparent 60%);
+    transform:translate(-50%,-50%);
+    transition:0.05s;
+    z-index:-1;
+}
+
+
+

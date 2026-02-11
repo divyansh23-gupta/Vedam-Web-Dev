@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Game</title>
+   <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1 class="title">Catch The Square</h1>
+     <div class="box">
+        <div class="score">Score: 0</div>
+        <div class="box2">
+          <button class="btn"></button>
+        </div>
+     </div>
+     <div class="gameover hidden">
+    <h2>Time Up!</h2>
+    <p id="finalScore"></p>
+    <button id="restart">Play Again</button>
+</div>
+    <h2></h2>
+<script>
+let score = 0;
+let timeLeft = 10;
+let playing = true;
+
+const scoreDiv = document.querySelector(".score");
+const btn = document.querySelector(".box2 button");
+const target = document.querySelector(".box2");
+const box = document.querySelector(".box");
+
+const gameoverScreen = document.querySelector(".gameover");
+const finalScore = document.getElementById("finalScore");
+const restartBtn = document.getElementById("restart");
+
+
+// TIMER
+const timer = setInterval(() => {
+    timeLeft--;
+    if(timeLeft <= 0){
+        endGame();
+    }
+},1000);
+
+
+// CLICK TARGET
+btn.addEventListener("click", function () {
+
+    if(!playing) return;
+
+    score++;
+    scoreDiv.textContent = "Score: " + score;
+
+    scoreDiv.classList.add("bump");
+    setTimeout(() => scoreDiv.classList.remove("bump"), 120);
+
+    // move target
+    const maxX = box.clientWidth - target.clientWidth;
+    const maxY = box.clientHeight - target.clientHeight;
+
+    target.style.left = Math.random() * maxX + "px";
+    target.style.top = Math.random() * maxY + "px";
+});
+
+
+// END GAME
+function endGame(){
+    playing = false;
+    clearInterval(timer);
+    finalScore.textContent = "Your Score: " + score;
+    gameoverScreen.classList.remove("hidden");
+}
+
+
+// RESTART
+restartBtn.onclick = () => location.reload();
+const light = document.body;
+
+document.addEventListener("mousemove", e => {
+    light.style.setProperty("--x", e.clientX + "px");
+    light.style.setProperty("--y", e.clientY + "px");
+
+    document.body.style.setProperty("--mouse-x", e.clientX + "px");
+    document.body.style.setProperty("--mouse-y", e.clientY + "px");
+
+    document.body.style.setProperty("background-position", `${e.clientX/30}px ${e.clientY/30}px`);
+});
+</script>
+
+
+  </body>
+</html>
